@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms"
 
 type IncidentPriority = 'Baja' | 'Media' | 'Alta';
 
@@ -16,7 +17,7 @@ interface Incident {
 
 
 @Component({
-  imports: [],
+  imports: [FormsModule],
   selector: "app-root",
   styleUrl: "./app.css",
   templateUrl: "./app.html",
@@ -26,6 +27,15 @@ export class App {
 
   protected readonly description: string =
     "Soporte TI rapido, organizado y eficiente";
+
+
+
+  protected newIncidentTitle: string = '';
+
+
+  protected clearTitle(): void {
+    this.newIncidentTitle = '';
+  }
 
 
   protected incidents: Incident[] = [
@@ -51,4 +61,6 @@ export class App {
       status: 'Abierta',
     },
   ];
+
+
 }
