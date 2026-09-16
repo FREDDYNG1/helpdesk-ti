@@ -32,9 +32,13 @@ export class App {
 
   protected newIncidentTitle: string = '';
 
+  protected newIncidentDescription: string = '';
 
-  protected clearTitle(): void {
+
+
+  protected clearForm(): void {
     this.newIncidentTitle = '';
+    this.newIncidentDescription = '';
   }
 
 

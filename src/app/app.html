@@ -19,8 +19,20 @@
     <p>Titulo ingresado : {{ newIncidentTitle }}</p>
     }
 
+    <label for="incident-description">Descripcion</label>
+    <textarea id="incident-description" name="incidentDescription" row="4"
+      placeholder="Descibre el problema con el mayo detalle posible" [(ngModel)]="newIncidentDescription"></textarea>
 
-    <button type="button" [disabled]="newIncidentTitle.trim().length === 0" (click)="clearTitle()">Limpiar</button>
+    @if (newIncidentDescription.trim().length === 0){
+    <p>La descripcion es obligatoria</p>
+    }@else {
+    <p>Descripcion ingresada : {{ newIncidentDescription }}</p>
+    }
+
+
+    <button type="button"
+      [disabled]="newIncidentTitle.trim().length === 0 && newIncidentDescription.trim().length === 0"
+      (click)="clearForm()">Limpiar</button>
   </section>
 
   <section>
