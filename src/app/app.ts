@@ -34,11 +34,18 @@ export class App {
 
   protected newIncidentDescription: string = '';
 
+  protected newIncidentPriority:string = 'Media';
+
+  protected newIncidentStatus:string = 'Abierta';
+
+
 
 
   protected clearForm(): void {
     this.newIncidentTitle = '';
     this.newIncidentDescription = '';
+    this.newIncidentPriority = 'Media';
+    this.newIncidentStatus = 'Abierta';
   }
 
 

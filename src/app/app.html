@@ -30,6 +30,30 @@
     }
 
 
+    <label for="incident-Priority">Prioridad</label>
+
+    <select id="incident-Priority" name="incidentPriority" [(ngModel)]="newIncidentPriority">
+      <option value="Baja">Baja</option>
+      <option value="Media">Media</option>
+      <option value="Alata">Alta</option>
+    </select>
+
+    <p>Prioridad selecionada: {{ newIncidentPriority }}</p>
+
+
+    <label for="incident-Status">Estado</label>
+
+    <select id="incident-Status" name="incidentStatus" [(ngModel)]="newIncidentStatus">
+      <option value="Abierta">Abierta</option>
+      <option value="En proceso">En proceso</option>
+      <option value="Resuelta">Resulta</option>
+    </select>
+
+    <p>Estado seleccionado: {{ newIncidentStatus }}</p>
+
+
+
+
     <button type="button"
       [disabled]="newIncidentTitle.trim().length === 0 && newIncidentDescription.trim().length === 0"
       (click)="clearForm()">Limpiar</button>
