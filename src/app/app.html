@@ -1,4 +1,33 @@
 <main>
+  <header>
   <h1> {{ appName }}</h1>
   <p> {{ description }} </p>
+  </header>
+
+  <section>
+    <h2>Incidencias registradas</h2>
+
+    @for (incident of incidents; track incident.id) {
+      <article>
+        <h3>{{ incident.title }}</h3>
+
+        <p>{{ incident.description }}</p>
+
+        <p>
+          <strong>Prioridad</strong>
+             {{ incident.priority }}
+        </p>
+
+        <p>
+          <strong>Estado</strong>
+             {{ incident.status }}
+        </p>
+
+
+      </article>
+    }@empty {
+      <p>No hay incidencias registradas</p>
+    }
+  </section>
+
 </main>
