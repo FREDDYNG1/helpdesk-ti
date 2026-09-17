@@ -74,6 +74,11 @@ protected deleteIncident(incidentId: number): void {
   });
 }
 
+protected isIncidentFormInvalid(): boolean {
+  return (
+    this.newIncidentTitle.trim().length === 0 || this.newIncidentDescription.trim().length === 0);
+}
+
   protected incidents: Incident[] = [
     {
       id: 1,

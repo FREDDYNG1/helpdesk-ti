@@ -54,9 +54,7 @@
 
 
 
-    <button type="button"
-      [disabled]="newIncidentTitle.trim().length === 0 && newIncidentDescription.trim().length === 0"
-      (click)="clearForm()">Limpiar</button>
+    <button type="button" [disabled]="isIncidentFormInvalid()" (click)="clearForm()">Crear incidencia</button>
   </section>
 
   <section>
