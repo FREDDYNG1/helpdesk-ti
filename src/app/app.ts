@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ɵresetIncrementalHydrationEnabledWarnedForTests } from "@angular/core";
 import { FormsModule } from "@angular/forms"
 
 type IncidentPriority = 'Baja' | 'Media' | 'Alta';
@@ -39,8 +39,6 @@ export class App {
   protected newIncidentStatus:string = 'Abierta';
 
 
-
-
   protected clearForm(): void {
     this.newIncidentTitle = '';
     this.newIncidentDescription = '';
@@ -71,7 +69,35 @@ export class App {
       priority: 'Alta',
       status: 'Abierta',
     },
+     {
+      id:4 ,
+      title: 'Sin acceso a wifi',
+      description: 'No es posible conectar a wifi desde dispositivo.',
+      priority: 'Alta',
+      status: 'Abierta',
+    },
   ];
+
+
+protected changeIncidentStatus(incidentId: number): void {
+  this.incidents = this.incidents.map((incident) => {
+    if (incident.id !== incidentId) {
+      return incident;
+    }
+
+    const nextStatus: IncidentStatus =
+      incident.status === 'Abierta'
+        ? 'En progreso'
+        : incident.status === 'En progreso'
+          ? 'Resuelta'
+          : 'Abierta';
+
+    return {
+      ...incident,
+      status: nextStatus,
+    };
+  });
+}
 
 
 }
