@@ -1,4 +1,4 @@
-import { Component, ɵresetIncrementalHydrationEnabledWarnedForTests } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms"
 
 type IncidentPriority = 'Baja' | 'Media' | 'Alta';
@@ -34,9 +34,9 @@ export class App {
 
   protected newIncidentDescription: string = '';
 
-  protected newIncidentPriority:string = 'Media';
+  protected newIncidentPriority: IncidentPriority = 'Media';
 
-  protected newIncidentStatus:string = 'Abierta';
+  protected newIncidentStatus: IncidentStatus = 'Abierta';
 
 
   protected clearForm(): void {
@@ -46,6 +46,33 @@ export class App {
     this.newIncidentStatus = 'Abierta';
   }
 
+// metodo para cambiar estado de incidencia
+  protected changeIncidentStatus(incidentId: number): void {
+  this.incidents = this.incidents.map((incident) => {
+    if (incident.id !== incidentId) {
+      return incident;
+    }
+
+    const nextStatus: IncidentStatus =
+      incident.status === 'Abierta'
+        ? 'En progreso'
+        : incident.status === 'En progreso'
+          ? 'Resuelta'
+          : 'Abierta';
+
+    return {
+      ...incident,
+      status: nextStatus,
+    };
+  });
+}
+
+//metodo para eliminar incidencia
+protected deleteIncident(incidentId: number): void {
+  this.incidents = this.incidents.filter((incident) => {
+    return incident.id !== incidentId;
+  });
+}
 
   protected incidents: Incident[] = [
     {
@@ -77,27 +104,4 @@ export class App {
       status: 'Abierta',
     },
   ];
-
-
-protected changeIncidentStatus(incidentId: number): void {
-  this.incidents = this.incidents.map((incident) => {
-    if (incident.id !== incidentId) {
-      return incident;
-    }
-
-    const nextStatus: IncidentStatus =
-      incident.status === 'Abierta'
-        ? 'En progreso'
-        : incident.status === 'En progreso'
-          ? 'Resuelta'
-          : 'Abierta';
-
-    return {
-      ...incident,
-      status: nextStatus,
-    };
-  });
-}
-
-
 }
